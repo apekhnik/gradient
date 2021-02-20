@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   getNewColor,
   onSecondColorChange,
@@ -17,17 +18,16 @@ export const createGradient = (first = "#42716f", second = "#19000c") => {
 };
 
 const NewGradient = () => {
-  const actualColor = useSelector(getNewColor);
+  const { first, second } = useSelector(getNewColor);
   const disableChek = useSelector(getDisableBtn);
 
-  const list = useSelector((state) => state.app.colorList);
   const history = useHistory();
   const dispatch = useDispatch();
   const addColor = (e) => {
     e.preventDefault();
     const newColor = {
-      first: actualColor.first,
-      second: actualColor.second,
+      first: first,
+      second: second,
       id: uniqid(),
     };
 
@@ -36,11 +36,16 @@ const NewGradient = () => {
       history.push("/");
     }, 1000);
   };
+  const isDisabled = (v) => {
+    isValid(v)
+      ? dispatch(disableBtnToogler(true))
+      : dispatch(disableBtnToogler(false));
+  };
   return (
     <div
       className="newGradient"
       style={{
-        background: createGradient(actualColor.first, actualColor.second),
+        background: createGradient(first, second),
       }}
     >
       <div className="newGradient__content">
@@ -49,22 +54,18 @@ const NewGradient = () => {
             <div className="form__input">
               <input
                 type="text"
-                value={actualColor.first}
+                value={first}
                 onChange={(e) => {
-                  isValid(e.target.value)
-                    ? dispatch(disableBtnToogler(true))
-                    : dispatch(disableBtnToogler(false));
+                  isDisabled(e.target.value);
                   dispatch(onFirstColorChange(e.target.value));
                 }}
               />
 
               <input
                 type="text"
-                value={actualColor.second}
+                value={second}
                 onChange={(e) => {
-                  isValid(e.target.value)
-                    ? dispatch(disableBtnToogler(true))
-                    : dispatch(disableBtnToogler(false));
+                  isDisabled(e.target.value);
                   dispatch(onSecondColorChange(e.target.value));
                 }}
               />

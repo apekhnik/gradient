@@ -17,8 +17,7 @@ const EditGradient = (props) => {
   const gradient = useSelector(getColorList).filter((item) =>
     item.id != id ? false : true
   )[0];
-  console.log(useSelector(getColorList));
-  if (!gradient) history.push("/");
+
   const [first, setFirstColor] = useState(gradient.first);
   const [second, setSecondColor] = useState(gradient.second);
 
@@ -29,7 +28,11 @@ const EditGradient = (props) => {
     dispatch(editColor({ first, second, id }));
     history.push("/");
   };
-
+  const isDisabled = (v) => {
+    isValid(v)
+      ? dispatch(disableBtnToogler(true))
+      : dispatch(disableBtnToogler(false));
+  };
   return (
     <div
       className="editGradient"
@@ -41,9 +44,7 @@ const EditGradient = (props) => {
             type="text"
             value={first}
             onChange={(e) => {
-              isValid(e.target.value)
-                ? dispatch(disableBtnToogler(true))
-                : dispatch(disableBtnToogler(false));
+              isDisabled(e.target.value);
               setFirstColor(e.target.value);
             }}
           />
@@ -52,9 +53,7 @@ const EditGradient = (props) => {
             type="text"
             value={second}
             onChange={(e) => {
-              isValid(e.target.value)
-                ? dispatch(disableBtnToogler(true))
-                : dispatch(disableBtnToogler(false));
+              isDisabled(e.target.value);
               setSecondColor(e.target.value);
             }}
           />
