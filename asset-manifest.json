@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/gradient/static/css/main.6c897e6f.chunk.css",
-    "main.js": "/gradient/static/js/main.77ab7a3b.chunk.js",
-    "main.js.map": "/gradient/static/js/main.77ab7a3b.chunk.js.map",
+    "main.js": "/gradient/static/js/main.49beadf1.chunk.js",
+    "main.js.map": "/gradient/static/js/main.49beadf1.chunk.js.map",
     "runtime-main.js": "/gradient/static/js/runtime-main.42762d90.js",
     "runtime-main.js.map": "/gradient/static/js/runtime-main.42762d90.js.map",
     "static/js/2.e89e7ff2.chunk.js": "/gradient/static/js/2.e89e7ff2.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.42762d90.js",
     "static/js/2.e89e7ff2.chunk.js",
     "static/css/main.6c897e6f.chunk.css",
-    "static/js/main.77ab7a3b.chunk.js"
+    "static/js/main.49beadf1.chunk.js"
   ]
 }
